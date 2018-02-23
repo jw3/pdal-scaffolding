@@ -1,0 +1,13 @@
+#include "gtest/gtest.h"
+
+#include "@PLUGIN_NAME@.hpp"
+
+namespace
+{
+    using namespace pdal;
+
+    TEST(DefaultTests, instantiation) {
+        @PLUGIN_NAME@ plugin();
+        //EXPECT_EQ(plugin.getName(), "@PLUGIN_TYPE@s.@PLUGIN_NAME@");
+    }
+}

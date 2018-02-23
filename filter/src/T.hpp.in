@@ -1,0 +1,25 @@
+#pragma once
+
+#include <pdal/pdal_export.hpp>
+#include <pdal/Filter.hpp>
+
+namespace pdal
+{
+    class Options;
+    class PointLayout;
+    class PointView;
+
+    class PDAL_DLL @PLUGIN_NAME@ : public Filter
+    {
+    public:
+        static void* create();
+        static int32_t destroy(void*);
+        std::string getName() const;
+
+    private:
+        void addArgs(ProgramArgs&) override;
+        void ready(PointTableRef) override;
+        PointViewSet run(PointViewPtr) override;
+        void done(PointTableRef) override;
+    };
+}

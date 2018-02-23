@@ -1,0 +1,31 @@
+#include "@PLUGIN_NAME@.hpp"
+
+#include <pdal/pdal_macros.hpp>
+
+
+namespace pdal
+{
+    static PluginInfo const s_info =
+            PluginInfo("filters.@PLUGIN_NAME@", "@PLUGIN_NAME@", "http://link/to/documentation");
+
+    CREATE_SHARED_PLUGIN(1, 0, @PLUGIN_NAME@, Filter, s_info)
+
+    std::string @PLUGIN_NAME@::getName() const {
+        return s_info.name;
+    }
+
+    void @PLUGIN_NAME@::addArgs(ProgramArgs& args) {
+    }
+
+    void @PLUGIN_NAME@::ready(PointTableRef table) {
+    }
+
+    PointViewSet @PLUGIN_NAME@::run(PointViewPtr view) {
+        PointViewSet viewSet;
+        viewSet.insert(view);
+        return viewSet;
+    }
+
+    void @PLUGIN_NAME@::done(PointTableRef) {
+    }
+}
