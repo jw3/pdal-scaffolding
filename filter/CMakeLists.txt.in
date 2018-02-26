@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(filter-scaffolding)
+project(@PLUGIN_NAME@)
 
 if(EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
     include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
