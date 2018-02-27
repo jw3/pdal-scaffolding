@@ -27,6 +27,7 @@ echo "type: $type"
 echo "name: $name"
 echo "namespace: $ns"
 echo "destination: $target_dir"
+echo "additional args: $additional_args"
 
 mkdir -p "$build_dir"
 cd "$build_dir"
@@ -37,5 +38,16 @@ if [[ "$init_conan" == "y" ]]; then
  conan install "$target_dir" -s build_type=Debug --install-folder="$target_dir"/cmake-build-debug
 fi
 
-cd "$src_dir"
 echo "scaffolding complete, $build_dir can be deleted"
+
+echo "initializing repo"
+cd "$target_dir"
+
+git init > /dev/null
+git commit --allow-empty -m "initialize repository" > /dev/null
+git add . > /dev/null
+git commit -m "initialize project" > /dev/null
+
+cd "$src_dir"
+
+echo "$name has been created in $target_dir"
