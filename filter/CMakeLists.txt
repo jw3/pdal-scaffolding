@@ -1,3 +1,8 @@
+set(NAMESPACED_NAME ${PLUGIN_NAME})
+if (PLUGIN_NAMESPACE)
+    set(NAMESPACED_NAME "${PLUGIN_NAMESPACE}_${PLUGIN_NAME}")
+endif ()
+
 configure_file(CMakeLists.txt.in ${TARGET_DIR}/CMakeLists.txt @ONLY)
 
 # src
