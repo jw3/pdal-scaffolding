@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+additional_args=""
+
 IFS= read -p "plugin type [f/k/r/w]: " type
 
 IFS= read -p "$type name: " name
@@ -10,9 +12,14 @@ if [[ -z "$target_dir" ]]; then target_dir="/tmp/$name"; fi
 
 IFS= read -p "$type namespace [default: none]: " ns
 
+IFS= read -p "enable matlab support [y/n]: " with_matlab
+if [[ "$with_matlab" == "y" ]]; then
+  additional_args="$additional_args -DWITH_MATLAB=ON"
+fi
+
 echo ""
 
-readonly src_dir=$PWD
+readonly src_dir="$PWD"
 readonly build_dir="$target_dir/cmake-build-scaffolding"
 
 echo "scaffolding from $build_dir ..."
@@ -23,7 +30,7 @@ echo "destination: $target_dir"
 
 mkdir -p "$build_dir"
 cd "$build_dir"
-cmake "$src_dir" -DPLUGIN_TYPE=filter -DPLUGIN_NAME="$name" -DPLUGIN_NAMESPACE="$ns" -DTARGET_DIR="$target_dir"
+cmake "$src_dir" -DPLUGIN_TYPE=filter -DPLUGIN_NAME="$name" -DPLUGIN_NAMESPACE="$ns" -DTARGET_DIR="$target_dir" $additional_args
 
 IFS= read -p "initialize conan for clion [y/n]: " init_conan
 if [[ "$init_conan" == "y" ]]; then

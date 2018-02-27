@@ -15,3 +15,10 @@ configure_file(src/T.cpp.in ${TARGET_DIR}/src/${PLUGIN_NAME}.cpp)
 configure_file(test/CMakeLists.txt.in ${TARGET_DIR}/test/CMakeLists.txt @ONLY)
 configure_file(test/driver.cpp.in ${TARGET_DIR}/test/driver.cpp)
 configure_file(test/UnitTest.cpp.in ${TARGET_DIR}/test/${PLUGIN_NAME}UnitTest.cpp)
+
+if (WITH_MATLAB)
+    file(APPEND ${TARGET_DIR}/src/CMakeLists.txt "
+include(matlab)
+set_matlab_rpath(\${PLUGIN_IMPL})
+")
+endif ()
