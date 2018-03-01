@@ -1,23 +1,29 @@
 #!/usr/bin/env bash
 
-readonly root="$PWD"
+readonly srcdir="$PWD"
+readonly name="cmake-build-MyPlugin"
+readonly root="$srcdir/$name"
 
-mkdir -p "$root/build/scaffolding"
-cd "$root/build/scaffolding"
+rm -rf "$root"
+
+mkdir -p "$root/build"
+mkdir -p "$root/scaffolding"
+
+cd "$root/scaffolding"
 
 cmake \
 -DPLUGIN_TYPE="filter" \
 -DPLUGIN_NAME="MyPlugin" \
 -DPLUGIN_NAMESPACE="jw3" \
--DTARGET_DIR="$root/build" \
+-DTARGET_DIR="$root" \
 -DCXX_STANDARD="14" \
 -DMAJOR_VERSION=1 \
 -DMINOR_VERSION=0 \
 -DPATCH_VERSION=0 \
-$additional_args \
-"$root" > /dev/null
+"$srcdir" > /dev/null
 
 cd "$root/build"
-conan install .
-cmake .
+pwd
+conan install "$root"
+cmake "$root"
 make
