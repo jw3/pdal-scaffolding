@@ -17,8 +17,8 @@ find_package(PDAL 1.6.0 REQUIRED CONFIG)
 find_package(Threads REQUIRED)
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 
-set(PLUGIN_IMPL pdal_plugin_@PLUGIN_TYPE@_@NAMESPACED_NAME@)
-set(PLUGIN_TESTS pdal_plugin_@PLUGIN_TYPE@_@NAMESPACED_NAME@_Test)
+string(TOLOWER pdal_plugin_@PLUGIN_TYPE@_@NAMESPACED_NAME@ PLUGIN_IMPL)
+string(TOLOWER pdal_plugin_@PLUGIN_TYPE@_@NAMESPACED_NAME@_test PLUGIN_TESTS)
 
 include_directories(src)
 
