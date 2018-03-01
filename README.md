@@ -22,10 +22,10 @@ Using CMake to scaffold PDAL plugins
 The easiest way to run is with the `new-plugin` script which will collect the required inputs and initialize the project.
 
 ```
-#! ./new-plugin 
+#! ./new-plugin
 plugin type [F/k/r/w]: f
 filter name: MyPlugin
-output directory [/tmp/MyPlugin]:               
+output directory [/tmp/MyPlugin]: 
 cxx standard [(11)/14/17]: 14
 filter namespace [none]: jw3
 external conanfile [None/t]: /tmp/conanfile.txt
@@ -40,13 +40,13 @@ namespace: jw3
 cxx standard: 14
 destination: /tmp/MyPlugin
 clion conan init: y
+plugin version: 1.0.0
 additional args:  -DCONANFILE=/tmp/conanfile.txt -DWITH_MATLAB=ON
 
 press enter to perform scaffolding... 
 
 Conan initialized in /tmp/MyPlugin/cmake-build-debug
 
-initialized git repository in /tmp/MyPlugin
 scaffolding complete, /tmp/MyPlugin/cmake-build-scaffolding can be deleted
 ```
 
@@ -57,7 +57,9 @@ Alternatively you can run `cmake` directly
 see the `new-plugin` script for an up to date example.
 
 
-#### Options
+#### Notes on the option
+
+The library version is implemented in the scaffolding but not exposed in `new-plugin`.
 
 The conanfile line is a little hard to decipher
 
