@@ -13,6 +13,7 @@ Using CMake to scaffold PDAL plugins
 - `PLUGIN_TYPE`: the type of plugin (`kernel`,`filter`,`reader`,`writer`)
 - `PLUGIN_NAME`: the name of the plugin
 - `TARGET_DIR`: where to write the project
+- `CXX_STANDARD`: CXX standard (`11`, `14`, `17`)
 - `CONANFILE`: path to an external conanfile
 - `WITH_MATLAB`: add matlab library paths to the project
 
@@ -24,18 +25,21 @@ The easiest way to run is with the `new-plugin` script which will collect the re
 #! ./new-plugin 
 plugin type [F/k/r/w]: f
 filter name: MyPlugin
-output directory [/tmp/MyPlugin]: 
+output directory [/tmp/MyPlugin]:               
+cxx standard [(11)/14/17]: 14
 filter namespace [none]: jw3
 external conanfile [None/t]: /tmp/conanfile.txt
 enable matlab support [y/N]: y
 initialize conan for clion [y/N]: y
 
-scaffolding from /tmp/MyPlugin/cmake-build-scaffolding ...
+Scaffolding options
+===================
 type: filter
 name: MyPlugin
 namespace: jw3
-clion conan init: y
+cxx standard: 14
 destination: /tmp/MyPlugin
+clion conan init: y
 additional args:  -DCONANFILE=/tmp/conanfile.txt -DWITH_MATLAB=ON
 
 press enter to perform scaffolding... 
