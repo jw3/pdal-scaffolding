@@ -18,9 +18,13 @@ configure_file(test/UnitTest.cpp.in ${TARGET_DIR}/test/${PLUGIN_NAME}UnitTest.cp
 
 if (WITH_MATLAB)
     file(APPEND ${TARGET_DIR}/src/CMakeLists.txt "
-include(matlab)
 set_matlab_rpath(\${PLUGIN_IMPL})
 target_link_libraries(\${PLUGIN_IMPL} PRIVATE \${Matlab_MCR_LIBRARIES})
 target_include_directories(\${PLUGIN_IMPL} PRIVATE \${Matlab_INCLUDE_DIRS})
+")
+
+    file(APPEND ${TARGET_DIR}/test/CMakeLists.txt "
+target_link_libraries(\${PLUGIN_TESTS} PRIVATE \${Matlab_MCR_LIBRARIES})
+target_include_directories(\${PLUGIN_TESTS} PRIVATE \${Matlab_INCLUDE_DIRS})
 ")
 endif ()

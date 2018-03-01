@@ -22,6 +22,7 @@ file(COPY common/gitignore DESTINATION ${TARGET_DIR})
 file(RENAME ${TARGET_DIR}/gitignore ${TARGET_DIR}/.gitignore)
 
 if (WITH_MATLAB)
+    set(INCLUDE_MATLAB "include(matlab)")
     file(COPY common/cmake/matlab.cmake DESTINATION ${TARGET_DIR}/cmake)
 endif ()
 
