@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+readonly root="$PWD"
+
+mkdir -p "$root/build/scaffolding"
+cd "$root/build/scaffolding"
+
+cmake \
+-DPLUGIN_TYPE="filter" \
+-DPLUGIN_NAME="MyPlugin" \
+-DPLUGIN_NAMESPACE="jw3" \
+-DTARGET_DIR="$root/build" \
+-DCXX_STANDARD="14" \
+-DMAJOR_VERSION=1 \
+-DMINOR_VERSION=0 \
+-DPATCH_VERSION=0 \
+$additional_args \
+"$root" > /dev/null
+
+cd "$root/build"
+conan install .
+cmake .
+make
