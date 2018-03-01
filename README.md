@@ -13,7 +13,8 @@ Using CMake to scaffold PDAL plugins
 - `PLUGIN_TYPE`: the type of plugin (`kernel`,`filter`,`reader`,`writer`)
 - `PLUGIN_NAME`: the name of the plugin
 - `TARGET_DIR`: where to write the project
-
+- `CONANFILE`: path to an external conanfile
+- `WITH_MATLAB`: add matlab library paths to the project
 
 ### Usage
 
@@ -22,26 +23,27 @@ The easiest way to run is with the `new-plugin` script which will collect the re
 ```
 #! ./new-plugin 
 plugin type [F/k/r/w]: f
-filter name: MyFilter
-output directory [/tmp/MyFilter]: 
+filter name: MyPlugin
+output directory [/tmp/MyPlugin]: 
 filter namespace [none]: jw3
+external conanfile [None/t]: /tmp/conanfile.txt
 enable matlab support [y/N]: y
-
-scaffolding from /tmp/MyFilter/cmake-build-scaffolding ...
-type: filter
-name: MyFilter
-namespace: jw3
-destination: /tmp/MyFilter
-additional args:  -DWITH_MATLAB=ON
-
-Press enter to perform scaffolding... 
-Scaffolding complete
-
 initialize conan for clion [y/N]: y
-Conan initialized in /tmp/MyFilter/cmake-build-debug
 
-initialized git repository in /tmp/MyFilter
-scaffolding complete, /tmp/MyFilter/cmake-build-scaffolding can be deleted
+scaffolding from /tmp/MyPlugin/cmake-build-scaffolding ...
+type: filter
+name: MyPlugin
+namespace: jw3
+clion conan init: y
+destination: /tmp/MyPlugin
+additional args:  -DCONANFILE=/tmp/conanfile.txt -DWITH_MATLAB=ON
+
+press enter to perform scaffolding... 
+
+Conan initialized in /tmp/MyPlugin/cmake-build-debug
+
+initialized git repository in /tmp/MyPlugin
+scaffolding complete, /tmp/MyPlugin/cmake-build-scaffolding can be deleted
 ```
 
 Alternatively you can run `cmake` directly
@@ -49,6 +51,22 @@ Alternatively you can run `cmake` directly
 `cmake -DPLUGIN_TYPE=filter -DPLUGIN_NAME=MyFilter <source-path>`
 
 see the `new-plugin` script for an up to date example.
+
+
+#### Options
+
+The conanfile line is a little hard to decipher
+
+`external conanfile [None/t]:`
+
+The options here are 
+
+- nothing and it will use the default conanfile from common
+- `t` and it will use the git-ignored conanfile.txt.template from scaffolding root
+- enter a path and it will use that
+
+This is ugly, an pragmatic, hack.  Will clean up later.
+
 
 ### Conan setup
 
