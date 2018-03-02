@@ -17,9 +17,9 @@ cmake \
 -DPLUGIN_NAMESPACE="jw3" \
 -DTARGET_DIR="$root" \
 -DCXX_STANDARD="14" \
--DMAJOR_VERSION=1 \
+-DMAJOR_VERSION=0 \
 -DMINOR_VERSION=0 \
--DPATCH_VERSION=0 \
+-DPATCH_VERSION=1 \
 "$srcdir" > /dev/null
 
 cd "$root/build"

@@ -20,7 +20,7 @@ endif ()
 
 file(COPY common/gitignore DESTINATION ${TARGET_DIR})
 file(RENAME ${TARGET_DIR}/gitignore ${TARGET_DIR}/.gitignore)
-configure_file(common/cmake/cpack.cmake.in ${TARGET_DIR}/cmake/cpack.cmake)
+configure_file(common/cmake/cpack.cmake.in ${TARGET_DIR}/cmake/cpack.cmake @ONLY)
 
 if (WITH_MATLAB)
     set(INCLUDE_MATLAB "include(matlab)")
