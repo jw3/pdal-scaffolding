@@ -28,7 +28,7 @@ conan install "$root"
 cmake "$root"
 make
 
-if [[ ! -z $(PDAL_DRIVER_PATH="$root/build/lib" pdal --drivers | grep jw3_MyPlugin) ]]; then
+if [[ ! -z $(PDAL_DRIVER_PATH="$root/build/src" pdal --drivers | grep jw3_MyPlugin) ]]; then
   echo "Success!"
   exit 0;
 else
