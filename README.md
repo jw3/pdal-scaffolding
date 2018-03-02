@@ -57,7 +57,7 @@ Alternatively you can run `cmake` directly
 see the `new-plugin` script for an up to date example.
 
 
-#### Notes on the option
+#### Notes on the options
 
 The library version is implemented in the scaffolding but not exposed in `new-plugin`.
 
@@ -82,3 +82,8 @@ http://docs.conan.io/en/latest/installation.html
 #### with CLion
 
 http://docs.conan.io/en/latest/integrations/clion.html
+
+
+### development
+
+Use the `test-build` script to run through a narrow example of scaffolding and building.
