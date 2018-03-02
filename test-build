@@ -25,8 +25,8 @@ cmake \
 cd "$root/build"
 pwd
 conan install "$root"
-cmake "$root"
-make
+cmake -DCPACK_PACKAGE_CONTACT="$USER" -DCPACK_GENERATOR="DEB;STGZ;TGZ;RPM" "$root"
+make package
 
 if [[ ! -z $(PDAL_DRIVER_PATH="$root/build/src" pdal --drivers | grep jw3_MyPlugin) ]]; then
   echo "Success!"
