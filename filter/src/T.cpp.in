@@ -10,7 +10,7 @@ namespace pdal
                        "@PLUGIN_NAME@",
                        "http://link/to/documentation");
 
-    CREATE_SHARED_PLUGIN(1, 0, @PLUGIN_NAME@, Filter, s_info)
+    CREATE_SHARED_PLUGIN(@MAJOR_VERSION@, @MINOR_VERSION@, @PLUGIN_NAME@, Filter, s_info)
 
     std::string @PLUGIN_NAME@::getName() const {
         return s_info.name;
