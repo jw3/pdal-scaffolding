@@ -1,0 +1,16 @@
+from conans import ConanFile
+
+class @PLUGIN_NAME@(ConanFile):
+    name = "@PLUGIN_NAME@"
+    version = "@MAJOR_VERSION@.@MINOR_VERSION@.@PATCH_VERSION@"
+    settings = "os", "compiler", "build_type", "arch"
+    url = "https://someurl.here"
+    requires = "gtest/1.8.0@bincrafters/stable"
+    generators = "cmake"
+
+    def package(self):
+        self.copy("*.so", src="src", dst="lib")
+        self.copy("*.hpp", src="src", dst="include")
+
+    def package_info(self):
+        self.cpp_info.libs = self.collect_libs()

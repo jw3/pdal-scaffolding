@@ -36,8 +36,8 @@ IFS= read -p "external conanfile [None/t]: " with_conanfile
 # look away ...
 if [[ ! -z "$with_conanfile" ]]; then
   case "$with_conanfile" in
-    ("t") with_conanfile="$src_dir/conanfile.txt.template" ;;
-    ("T") with_conanfile="$src_dir/conanfile.txt.template" ;;
+    ("t") with_conanfile="$src_dir/conanfile.py.template" ;;
+    ("T") with_conanfile="$src_dir/conanfile.py.template" ;;
     ("none") with_conanfile="" ;;
     ("None") with_conanfile="" ;;
     ("n") with_conanfile="" ;;

@@ -28,7 +28,16 @@ conan install "$root"
 cmake -DCPACK_PACKAGE_CONTACT="$USER" -DCPACK_GENERATOR="DEB;STGZ;TGZ;RPM" "$root"
 make package
 
-if [[ ! -z $(PDAL_DRIVER_PATH="$root/build/src" pdal --drivers | grep jw3_MyPlugin) ]]; then
+conan export-pkg .. jw3/test -f
+
+mkdir conan
+cd conan
+conan install -g txt MyPlugin/1.0.0@jw3/test
+
+export PDAL_DRIVER_PATH=$(cat conanbuildinfo.txt | grep MyPlugin | grep 'lib$' | head -n1)
+echo "testing driver path at $PDAL_DRIVER_PATH"
+
+if [[ ! -z $(pdal --drivers | grep jw3_MyPlugin) ]]; then
   echo "Success!"
   exit 0;
 else
