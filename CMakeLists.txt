@@ -24,6 +24,7 @@ configure_file(common/cmake/cpack.cmake.in ${TARGET_DIR}/cmake/cpack.cmake @ONLY
 
 if (WITH_MATLAB)
     set(INCLUDE_MATLAB "include(matlab)")
+    list(APPEND ADDITIONAL_INCLUDES "#include <mclmcrrt.h>" "#include <mclcppclass.h>")
     file(COPY common/cmake/matlab.cmake DESTINATION ${TARGET_DIR}/cmake)
 endif ()
 

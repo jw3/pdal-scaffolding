@@ -1,7 +1,7 @@
 #include "@PLUGIN_NAME@.hpp"
 
 #include <pdal/pdal_macros.hpp>
-
+@ADDITIONAL_INCLUDES@
 
 namespace pdal
 {

@@ -5,6 +5,10 @@ endif ()
 
 configure_file(CMakeLists.txt.in ${TARGET_DIR}/CMakeLists.txt @ONLY)
 
+if (ADDITIONAL_INCLUDES)
+    string(REPLACE ";" "\n" ADDITIONAL_INCLUDES "${ADDITIONAL_INCLUDES}")
+endif ()
+
 # src
 configure_file(src/CMakeLists.txt.in ${TARGET_DIR}/src/CMakeLists.txt @ONLY)
 configure_file(src/T.hpp.in ${TARGET_DIR}/src/${PLUGIN_NAME}.hpp)
