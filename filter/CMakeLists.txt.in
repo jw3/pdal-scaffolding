@@ -33,4 +33,7 @@ include_directories(src)
 add_subdirectory(src)
 add_subdirectory(test)
 
-include(cpack)
+option(WITH_PACKAGING "enable cpack packaging" OFF)
+if (WITH_PACKAGING)
+    include(cpack)
+endif ()

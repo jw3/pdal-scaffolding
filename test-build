@@ -25,7 +25,7 @@ cmake \
 cd "$root/build"
 pwd
 conan install "$root"
-cmake -DCPACK_PACKAGE_CONTACT="$USER" -DCPACK_GENERATOR="DEB;STGZ;TGZ;RPM" "$root"
+cmake -DWITH_PACKAGING=ON -DCPACK_PACKAGE_CONTACT="$USER" -DCPACK_GENERATOR="DEB;STGZ;TGZ;RPM" "$root"
 make package
 
 conan export-pkg .. jw3/test -f
