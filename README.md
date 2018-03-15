@@ -87,3 +87,10 @@ http://docs.conan.io/en/latest/integrations/clion.html
 ### development
 
 Use the `test-build` script to run through a narrow example of scaffolding and building.
+
+Set up git prior to scaffolding
+
+```
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+```

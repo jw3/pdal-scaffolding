@@ -3,6 +3,11 @@
 readonly src_dir="$PWD"
 additional_args=""
 
+if [[ -z $(git config --get user.name) ]] || [[ -z $(git config --get user.email) ]]; then
+  echo "global git user and email must be configured prior to scaffolding"
+  exit 1;
+fi
+
 IFS= read -p "plugin type [F/k/r/w]: " type
 if [[ -z "$type" ]]; then type="f"; fi
 
