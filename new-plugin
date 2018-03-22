@@ -106,7 +106,7 @@ git init > /dev/null
 git commit --allow-empty -m "initialize repository" > /dev/null
 git add . > /dev/null
 git commit -m "initialize project" > /dev/null
-git tag v0.0.0
+git tag -a -m "initialized" v0.0.0
 
 cd "$src_dir"
 
