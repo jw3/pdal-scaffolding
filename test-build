@@ -14,13 +14,18 @@ cd "$root/scaffolding"
 cmake \
 -DPLUGIN_TYPE="filter" \
 -DPLUGIN_NAME="MyPlugin" \
+-DPLUGIN_DESCRIPTION="My awesome plugin" \
 -DPLUGIN_NAMESPACE="jw3" \
 -DTARGET_DIR="$root" \
--DCXX_STANDARD="14" \
--DMAJOR_VERSION=1 \
--DMINOR_VERSION=0 \
--DPATCH_VERSION=0 \
+-DCXX_STANDARD="17" \
 "$srcdir" > /dev/null
+
+cd "$root"
+git init > /dev/null
+git commit --allow-empty -m "initialize repository" > /dev/null
+git add . > /dev/null
+git commit -m "initialize project" > /dev/null
+git tag -a -m "initialized" v1.2.3
 
 cd "$root/build"
 pwd
@@ -37,7 +42,10 @@ conan install -g txt MyPlugin/1.0.0@jw3/test
 export PDAL_DRIVER_PATH=$(cat conanbuildinfo.txt | grep MyPlugin | grep 'lib$' | head -n1)
 echo "testing driver path at $PDAL_DRIVER_PATH"
 
-if [[ ! -z $(pdal --drivers | grep jw3_MyPlugin) ]]; then
+result=$(pdal -v 5 --drivers | grep jw3_MyPlugin)
+
+if [[ ! -z "$result" ]]; then
+  echo "$result"
   echo "Success!"
   exit 0;
 else

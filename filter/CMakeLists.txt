@@ -14,6 +14,12 @@ configure_file(src/CMakeLists.txt.in ${TARGET_DIR}/src/CMakeLists.txt @ONLY)
 configure_file(src/T.hpp.in ${TARGET_DIR}/src/${PLUGIN_NAME}.hpp)
 configure_file(src/T.cpp.in ${TARGET_DIR}/src/${PLUGIN_NAME}.cpp)
 
+if (NOT ${CXX_STANDARD} STREQUAL "17")
+    set(BUILD_INFO_STRING_DECL "const std::string")
+else ()
+    set(BUILD_INFO_STRING_DECL "inline const std::string")
+endif ()
+configure_file(src/BuildInfo.hpp.in ${TARGET_DIR}/src/BuildInfo.hpp.in @ONLY)
 
 # test
 configure_file(test/CMakeLists.txt.in ${TARGET_DIR}/test/CMakeLists.txt @ONLY)

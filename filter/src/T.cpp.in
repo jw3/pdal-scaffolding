@@ -1,4 +1,5 @@
 #include "@PLUGIN_NAME@.hpp"
+#include "BuildInfo.hpp"
 
 #include <pdal/pdal_macros.hpp>
 @ADDITIONAL_INCLUDES@
@@ -7,10 +8,12 @@ namespace pdal
 {
     static PluginInfo const s_info =
             PluginInfo("filters.@NAMESPACED_NAME@",
-                       "@PLUGIN_NAME@",
+                       BuildInfo::PluginDescription,
                        "http://link/to/documentation");
 
-    CREATE_SHARED_PLUGIN(@MAJOR_VERSION@, @MINOR_VERSION@, @PLUGIN_NAME@, Filter, s_info)
+    CREATE_SHARED_PLUGIN(PLUGIN_MAJOR_VERSION,
+                         PLUGIN_MINOR_VERSION,
+                         @PLUGIN_NAME@, Filter, s_info)
 
     std::string @PLUGIN_NAME@::getName() const {
         return s_info.name;

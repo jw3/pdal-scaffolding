@@ -1,0 +1,25 @@
+#pragma once
+
+#include <string>
+
+#define PLUGIN_MAJOR_VERSION ${VERSION_MAJOR}
+#define PLUGIN_MINOR_VERSION ${VERSION_MINOR}
+
+namespace BuildInfo
+{
+
+@BUILD_INFO_STRING_DECL@ PluginVersion = "${FULL_VERSION_STRING}";
+
+@BUILD_INFO_STRING_DECL@ PluginMajorVersion = "${VERSION_MAJOR}";
+
+@BUILD_INFO_STRING_DECL@ PluginMinorVersion = "${VERSION_MINOR}";
+
+@BUILD_INFO_STRING_DECL@ PluginPatchVersion = "${VERSION_PATCH}";
+
+@BUILD_INFO_STRING_DECL@ PluginDescription = "@PLUGIN_DESCRIPTION@ v${FULL_VERSION_STRING} [${GIT_COMMIT_SHORT_ID}]";
+
+@BUILD_INFO_STRING_DECL@ GitCommitId = "${GIT_COMMIT_ID}";
+
+@BUILD_INFO_STRING_DECL@ GitShortCommitId = "${GIT_COMMIT_SHORT_ID}";
+
+}

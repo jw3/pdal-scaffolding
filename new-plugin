@@ -26,6 +26,8 @@ if [[ "$type" != "filter" ]]; then echo "only filters are supported at this time
 IFS= read -p "$type name: " name
 if [[ -z "$name" ]]; then echo "name required"; exit 1; fi
 
+IFS= read -p "$type description: " desc
+
 IFS= read -p "output directory [/tmp/$name]: " target_dir
 if [[ -z "$target_dir" ]]; then target_dir="/tmp/$name"; fi
 
@@ -69,6 +71,7 @@ echo "Scaffolding options"
 echo "==================="
 echo "type: $type"
 echo "name: $name"
+echo "description: $desc"
 echo "namespace: $ns"
 echo "cxx standard: $cxx"
 echo "destination: $target_dir"
@@ -88,9 +91,7 @@ cmake \
 -DPLUGIN_NAMESPACE="$ns" \
 -DTARGET_DIR="$target_dir" \
 -DCXX_STANDARD="$cxx" \
--DMAJOR_VERSION=1 \
--DMINOR_VERSION=0 \
--DPATCH_VERSION=0 \
+-DPLUGIN_DESCRIPTION="$desc"
 $additional_args \
 "$src_dir" > /dev/null
 
