@@ -2,7 +2,7 @@ from conans import ConanFile
 
 class @PLUGIN_NAME@(ConanFile):
     name = "@PLUGIN_NAME@"
-    version = "@MAJOR_VERSION@.@MINOR_VERSION@.@PATCH_VERSION@"
+    version = "1.0.0"
     settings = "os", "compiler", "build_type", "arch"
     url = "https://someurl.here"
     requires = "gtest/1.8.0@bincrafters/stable"

@@ -18,9 +18,12 @@ if (NOT PLUGIN_NAME)
     message(WARNING "defaulted PLUGIN_NAME to ${PLUGIN_NAME}")
 endif ()
 
+file(COPY common/cmake/cpack.cmake DESTINATION ${TARGET_DIR}/cmake)
+file(COPY common/cmake/version.cmake DESTINATION ${TARGET_DIR}/cmake)
+file(COPY common/cmake/dependencies.cmake DESTINATION ${TARGET_DIR}/cmake)
+
 file(COPY common/gitignore DESTINATION ${TARGET_DIR})
 file(RENAME ${TARGET_DIR}/gitignore ${TARGET_DIR}/.gitignore)
-configure_file(common/cmake/cpack.cmake.in ${TARGET_DIR}/cmake/cpack.cmake @ONLY)
 
 if (WITH_MATLAB)
     set(INCLUDE_MATLAB "include(matlab)")
