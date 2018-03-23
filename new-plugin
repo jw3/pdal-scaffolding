@@ -91,7 +91,7 @@ cmake \
 -DPLUGIN_NAMESPACE="$ns" \
 -DTARGET_DIR="$target_dir" \
 -DCXX_STANDARD="$cxx" \
--DPLUGIN_DESCRIPTION="$desc"
+-DPLUGIN_DESCRIPTION="$desc" \
 $additional_args \
 "$src_dir" > /dev/null
 
