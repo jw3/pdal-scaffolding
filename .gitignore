@@ -2,7 +2,6 @@
 *.iml
 
 build
-*.cmake
 Makefile
 CMakeFiles
 cmake-build-*
