@@ -11,8 +11,8 @@ namespace pdal
                        BuildInfo::PluginDescription,
                        BuildInfo::PluginURL);
 
-    CREATE_SHARED_PLUGIN(PLUGIN_MAJOR_VERSION,
-                         PLUGIN_MINOR_VERSION,
+    CREATE_SHARED_PLUGIN(PDAL_MAJOR_VERSION,
+                         PDAL_MINOR_VERSION,
                          @PLUGIN_NAME@, Filter, s_info)
 
     std::string @PLUGIN_NAME@::getName() const {
