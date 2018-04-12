@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 readonly srcdir="$PWD"
-readonly name="cmake-build-MyPlugin"
+readonly type="${1:-filter}"
+readonly name="cmake-build-My${type}Plugin"
 readonly root="$srcdir/$name"
 
 rm -rf "$root"
@@ -12,10 +13,10 @@ mkdir -p "$root/scaffolding"
 cd "$root/scaffolding"
 
 cmake \
--DPLUGIN_TYPE="filter" \
--DPLUGIN_NAME="MyPlugin" \
--DPLUGIN_DESCRIPTION="My awesome plugin" \
--DPLUGIN_NAMESPACE="jw3" \
+-DPLUGIN_TYPE="$type" \
+-DPLUGIN_NAME="My${type}Plugin" \
+-DPLUGIN_DESCRIPTION="My awesome $type" \
+-DPLUGIN_NAMESPACE="$NS" \
 -DTARGET_DIR="$root" \
 -DCXX_STANDARD="17" \
 "$srcdir" > /dev/null
@@ -37,18 +38,22 @@ conan export-pkg .. jw3/test -f
 
 mkdir conan
 cd conan
-conan install -g txt MyPlugin/1.0.0@jw3/test
+conan install -g txt My${type}Plugin/1.0.0@jw3/test
 
-export PDAL_DRIVER_PATH=$(cat conanbuildinfo.txt | grep MyPlugin | grep 'lib$' | head -n1)
+export PDAL_DRIVER_PATH=$(cat conanbuildinfo.txt | grep My | grep 'lib$' | head -n1)
 echo "testing driver path at $PDAL_DRIVER_PATH"
 
-result=$(pdal -v 5 --drivers | grep jw3_MyPlugin)
+if [[ "$type" == "filter" ]];   then result=$(pdal --drivers | grep My)
+elif [[ "$type" == "kernel" ]]; then result=$(pdal --list-commands | grep My)
+fi
 
 if [[ ! -z "$result" ]]; then
   echo "$result"
   echo "Success!"
+  pdal My${type}Plugin
   exit 0;
 else
+  echo "$result"
   echo "Failure!"
   exit 1;
 fi

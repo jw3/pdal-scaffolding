@@ -28,4 +28,4 @@ if (WITH_MATLAB)
 endif ()
 
 add_subdirectory(common)
-add_subdirectory(filter)
+add_subdirectory(${PLUGIN_TYPE})

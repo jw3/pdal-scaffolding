@@ -1,0 +1,37 @@
+#include "@PLUGIN_NAME@.hpp"
+#include "BuildInfo.hpp"
+
+#include <pdal/Kernel.hpp>
+#include <pdal/PointTable.hpp>
+
+#include <memory>
+#include <string>
+@ADDITIONAL_INCLUDES@
+
+namespace pdal {
+
+    static PluginInfo const s_info{
+            BuildInfo::PDALStageName,
+            BuildInfo::PluginDescription,
+            BuildInfo::PluginURL
+    };
+
+    CREATE_SHARED_KERNEL(@PLUGIN_NAME@, s_info);
+    std::string @PLUGIN_NAME@::getName() const { return s_info.name; }
+
+    @PLUGIN_NAME@::@PLUGIN_NAME@() : Kernel() {
+    }
+
+    void @PLUGIN_NAME@::addSwitches(ProgramArgs& args) {
+        args.add("input,i", "Input filename", m_input_file).setPositional();
+        args.add("output,o", "Output filename", m_output_file).setPositional();
+    }
+
+    int @PLUGIN_NAME@::execute()
+    {
+        PointTable table;
+        Stage& reader = makeReader(m_input_file, "readers.las");
+
+        return 0;
+    }
+}
