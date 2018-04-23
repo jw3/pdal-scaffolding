@@ -18,17 +18,22 @@ namespace pdal
     }
 
     void @PLUGIN_NAME@::addArgs(ProgramArgs& args) {
+        std::cout << BuildInfo::PDALStageName << "::addArgs" << std::endl;
     }
 
     void @PLUGIN_NAME@::ready(PointTableRef table) {
+        std::cout << BuildInfo::PDALStageName << "::ready" << std::endl;
     }
 
     PointViewSet @PLUGIN_NAME@::run(PointViewPtr view) {
+        std::cout << BuildInfo::PDALStageName << "::run" << std::endl;
+
         PointViewSet viewSet;
         viewSet.insert(view);
         return viewSet;
     }
 
     void @PLUGIN_NAME@::done(PointTableRef) {
+        std::cout << BuildInfo::PDALStageName << "::done" << std::endl;
     }
 }
