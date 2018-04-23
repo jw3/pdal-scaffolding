@@ -14,7 +14,7 @@ cd "$root/scaffolding"
 
 cmake \
 -DPLUGIN_TYPE="$type" \
--DPLUGIN_NAME="My${type}Plugin" \
+-DPLUGIN_NAME="my${type}plugin" \
 -DPLUGIN_DESCRIPTION="My awesome $type" \
 -DPLUGIN_NAMESPACE="$NS" \
 -DTARGET_DIR="$root" \
@@ -31,16 +31,16 @@ git tag -a -m "initialized" v1.2.3
 cd "$root/build"
 pwd
 conan install "$root"
-cmake -DWITH_PACKAGING=ON -DCPACK_PACKAGE_CONTACT="$USER" -DCPACK_GENERATOR="DEB;STGZ;TGZ;RPM" "$root"
+cmake -DWITH_PACKAGING=ON -DCPACK_PACKAGE_CONTACT="$USER" -DCPACK_GENERATOR="DEB;STGZ;TGZ" "$root"
 make package
 
 conan export-pkg .. jw3/test -f
 
 mkdir conan
 cd conan
-conan install -g txt My${type}Plugin/1.0.0@jw3/test
+conan install -g txt my${type}plugin/1.0.0@jw3/test
 
-export PDAL_DRIVER_PATH=$(cat conanbuildinfo.txt | grep My | grep 'lib$' | head -n1)
+export PDAL_DRIVER_PATH=$(cat conanbuildinfo.txt | grep -i My | grep 'lib$' | head -n1)
 echo "testing driver path at $PDAL_DRIVER_PATH"
 
 if [[ "$type" == "filter" ]];   then result=$(pdal --drivers | grep My)
@@ -49,8 +49,10 @@ fi
 
 if [[ ! -z "$result" ]]; then
   echo "$result"
+
+  pdal pipeline -i "$srcdir/test-build.json"
+
   echo "Success!"
-  pdal My${type}Plugin
   exit 0;
 else
   echo "$result"

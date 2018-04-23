@@ -5,13 +5,11 @@
 
 namespace pdal
 {
-  static PluginInfo const s_info{
-          BuildInfo::PDALStageName,
-          BuildInfo::PluginDescription,
-          BuildInfo::PluginURL
-  };
+  static PluginInfo const s_info =
+    PluginInfo("filters.@PLUGIN_NAME@", "My awesome filter",
+               "http://link/to/documentation");
 
-    CREATE_SHARED_STAGE(@PLUGIN_NAME@, s_info)
+CREATE_SHARED_PLUGIN(1, 0, @PLUGIN_NAME@, Filter, s_info)
 
     std::string @PLUGIN_NAME@::getName() const {
         return s_info.name;

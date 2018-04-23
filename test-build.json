@@ -1,0 +1,9 @@
+{
+  "pipeline": [
+    "data/autzen.las",
+    {
+      "type": "filters.myfilterplugin"
+    },
+    "autzen.out.las"
+  ]
+}

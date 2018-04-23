@@ -1,6 +1,5 @@
 #pragma once
 
-#include <pdal/pdal_export.hpp>
 #include <pdal/Filter.hpp>
 
 namespace pdal
@@ -8,14 +7,12 @@ namespace pdal
     class PDAL_DLL @PLUGIN_NAME@ : public Filter
     {
     public:
-        static void* create();
-        static int32_t destroy(void*);
         std::string getName() const;
 
     private:
-        void addArgs(ProgramArgs&) override;
-        void ready(PointTableRef) override;
-        PointViewSet run(PointViewPtr) override;
-        void done(PointTableRef) override;
+        virtual void addArgs(ProgramArgs&) override;
+        virtual void ready(PointTableRef) override;
+        virtual PointViewSet run(PointViewPtr) override;
+        virtual void done(PointTableRef) override;
     };
 }
