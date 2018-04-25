@@ -23,7 +23,7 @@ set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 include(version)
 include(BuildInfo)
 
-string(TOLOWER pdal_plugin_@PLUGIN_TYPE@_${CMAKE_PROJECT_NAME} PLUGIN_IMPL)
+set(PLUGIN_IMPL pdal_plugin_@PLUGIN_TYPE@_${CMAKE_PROJECT_NAME})
 
 include_directories(src)
 
