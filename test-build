@@ -2,9 +2,9 @@
 
 readonly srcdir="$PWD"
 readonly type="${1:-filter}"
-readonly name="cmake-build-My${type}Plugin"
+readonly plugin_name="My${type}Plugin"
+readonly name="cmake-build-$plugin_name"
 readonly root="$srcdir/$name"
-readonly plugin_name="my${type}plugin"
 
 rm -rf "$root"
 
@@ -41,16 +41,19 @@ mkdir conan
 cd conan
 conan install -g txt "$plugin_name/1.0.0@jw3/test"
 
-export PDAL_DRIVER_PATH=$(cat conanbuildinfo.txt | grep -i My | grep 'lib$' | head -n1)
+export PDAL_DRIVER_PATH=$(cat conanbuildinfo.txt | grep -i "$plugin_name" | grep 'lib$' | head -n1)
 echo "testing driver path at $PDAL_DRIVER_PATH"
 
-if [[ "$type" == "filter" ]];   then result=$(pdal --drivers | grep -i My)
-elif [[ "$type" == "kernel" ]]; then result=$(pdal --list-commands | grep -i My)
+if [[ "$type" == "filter" ]];   then result=$(pdal --drivers | grep -i "$plugin_name")
+elif [[ "$type" == "kernel" ]]; then result=$(pdal --list-commands | grep -i "$plugin_name")
 fi
 
+echo "$result"
 if [[ ! -z "$result" ]]; then
-  echo "$result"
-  echo "{\"pipeline\": [ \"$srcdir/data/autzen.las\", { \"type\": \"filters.$plugin_name\" }]}" | pdal pipeline -s
+  readonly pipeline="{\"pipeline\": [ \"$srcdir/data/autzen.las\", { \"type\": \"filters.$plugin_name\" }]}"
+  echo "testing pipeline: $pipeline"
+  echo "$pipeline" > "$root/build/pipeline.json"
+  echo "$pipeline" | pdal pipeline -s
 
   if [ $? -eq 0 ]; then
     echo "Success!"
@@ -60,7 +63,6 @@ if [[ ! -z "$result" ]]; then
     exit $?;
   fi
 else
-  echo "$result"
   echo "Failure!"
   exit 1;
 fi
