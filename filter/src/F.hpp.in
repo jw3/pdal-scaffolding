@@ -7,7 +7,7 @@ namespace pdal
     class PDAL_DLL @PLUGIN_NAME@ : public Filter
     {
     public:
-        std::string getName() const;
+        std::string getName() const override;
 
     private:
         void addArgs(ProgramArgs&) override;
