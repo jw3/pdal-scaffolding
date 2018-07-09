@@ -1,5 +1,5 @@
 add_library(${PLUGIN_IMPL} SHARED @PLUGIN_NAME@.hpp @PLUGIN_NAME@.cpp)
-target_include_directories(${PLUGIN_IMPL} PRIVATE ${PDAL_INCLUDE_DIRS})
+target_include_directories(${PLUGIN_IMPL} PRIVATE ${CONAN_INCLUDE_DIRS} ${PDAL_INCLUDE_DIRS})
 target_link_libraries(${PLUGIN_IMPL} PRIVATE ${PDAL_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 install(TARGETS ${PLUGIN_IMPL}
