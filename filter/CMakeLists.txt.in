@@ -28,7 +28,6 @@ find_package(PDAL "${PDAL_VERSION_MAJOR}.${PDAL_VERSION_MINOR}.0" REQUIRED CONFI
 find_package(Threads REQUIRED)
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 @INCLUDE_MATLAB@
-include(version)
 include(BuildInfo)
 
 set(PLUGIN_IMPL pdal_plugin_@PLUGIN_TYPE@_${CMAKE_PROJECT_NAME})
