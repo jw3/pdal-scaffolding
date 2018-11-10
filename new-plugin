@@ -20,8 +20,8 @@ case "${type,,}" in
         exit 1 ;;
 esac
 
-if [[ "$type" != "filter" ]]; then echo "only filters are supported at this time"; exit 1; fi
-
+grep -q -E "filter|kernel" <<< "$type"
+if [ ${?} -ne 0 ]; then echo "only filters are supported at this time"; exit 1; fi
 
 IFS= read -p "$type name: " name
 if [[ -z "$name" ]]; then echo "name required"; exit 1; fi
